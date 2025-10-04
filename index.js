@@ -1,12 +1,16 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const helmet = require('helmet');
 
 const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
+
+// Security middleware
+app.use(helmet());
 
 
 
@@ -33,9 +37,9 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/projects', (req, res) => {
-  res.render('projects.hbs', {
-    pageTitle: 'Projects'
+app.get('/contact', (req, res) => {
+  res.render('contact.hbs', {
+    pageTitle: 'Contact Us'
   });
 });
 
